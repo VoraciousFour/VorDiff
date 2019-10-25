@@ -135,3 +135,72 @@ Our open-source VorDiff package will be uploaded to PyPI by using twine because 
 
 ## Implementation
 
+### Node
+The `Node()` class represents a single node in our computational graph. It outlines the operations necessary for the `scalar` and `vector` objects to implement. These two types of variables are separated into their own classes to reduce complexity and improve organization.
+```py
+class Node():
+
+    def __init__(self, val: float, der: float):
+        self.val = val
+        self.der = der
+
+   def __add__(self, other):
+       raise NotImplementedError
+
+   def __radd__(self, other):
+       raise NotImplementedError
+
+   def __mul__(self, other):
+       raise NotImplementedError
+
+   def __rmul__(self, other):
+       raise NotImplementedError
+   ...
+   ```
+
+### Operator
+The operator class contains all mathematical operations that users can call to build their functions. Each function returns a `Node` object.
+```py
+from ... import Node
+
+class Operator():
+
+    def __init__(self):
+        pass
+
+    def sqrt(self, x):
+        pass
+
+    def sin(self, x):
+        pass
+```
+
+The elementary function objects are analytically differentiable and some are defined in the numpy package. We will include the following elementary functions:
+
+- Trigonometric functions: sin, cos, tan
+- Inverse Trigonometric functions: arcsin, arccos, arctan
+- Hyperbolic functions: sinh, cosh, tanh, arcsinh, arccosh, arctanh
+- Exponents: exp, exp2, expm1
+- Logarithms: log, log2, log10, log1p
+
+The derivatives of these elementary function objects and the self-defined elementary function objects (such as power and sqrt) can be evaluated with the chain rule.
+
+### AutoDiff
+The `AutoDiff` class will allow the user to easily create variables and build auto-differentiable functions, without having to interface with the `Node` class. It will make use of the auto-differentiator much more intuitive for the user.
+```py
+from Nodes import Scalar
+from Nodes import Vector
+
+class AutoDiff():
+    def __init__(self):
+        pass
+
+    def create_scalar(self, val: float = 0):
+        pass
+
+    def create_vector(self, vals):
+        pass
+```
+
+### External dependencies:
+We will use numpy package for mathematical computation (such as sin, log, exp), and pytest and pytest-cov for the test suite.
