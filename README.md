@@ -5,6 +5,6 @@
 
 ## Group 25
 - Erik Johnsson
-- Weiry Chen
+- Weiru Chen
 - Yixuan Di
 - Zergham Ahmed
