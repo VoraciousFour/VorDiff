@@ -24,19 +24,37 @@ $$\frac{\partial F}{\partial x}=\sum_{i=1}^{m}\frac{\partial F}{\partial g_{i}} 
 
 ### 2.2 Forward Mode
 
-The forward mode automatic differentiation is accomplished by firstly splitting the function process into one-by-one steps, each including only one basic operation. Then from the first node, the value and derivative will be calculated based on the values and derivatives of forward nodes. A computational graph/table
+The forward mode automatic differentiation is accomplished by firstly splitting the function process into one-by-one steps, each including only one basic operation. Then from the first node, the value and derivative will be calculated based on the values and derivatives of forward nodes. An example of computational graph and table for forward mode AD is shown as follows:
+
+\begin{align}
+  f\left(x,y\right) =\sin\left(xy\right)
+\end{align}
+We will be evaluating the function at $f(1, 0)$
+
+Evaluation trace:
+
+| Trace   | Elementary Function      | Current Value           | Elementary Function Derivative       | $\nabla_{x}$ Value  | $\nabla_{y}$ Value  |
+| :---: | :-----------------: | :-----------: | :----------------------------: | :-----------------:  | :-----------------: |
+| $x_{1}$ | $x_{1}$                  | $1$        | $\dot{x}_{1}$                        | $1$ | $0$ |
+| $x_{2}$ | $x_{2}$                  | $0$        | $\dot{x}_{2}$                        | $0$ | $1$ |
+| $x_{3}$ | $x_{1}x_{2}$                  | $0$        | $\dot{x}_{2}$                        | $0$ | $1$ |
 
 ### 2.3 Reverse Mode
 
-The reverse mode automatic differentiation has a process similar to the forward mode auto differentiation, but has another reverse process. It does not apply the chain rule and only partial derivatives to a node are stored. First, for the forward process, the partial derivatives are stored for each node. For the reverse process, it starts with the differentiation to the last node, and then activations in the forward process are deployed in the differentiation differentiation step by step.
+The reverse mode automatic differentiation has a process similar to the forward mode auto differentiation, but has another reverse process. It does not apply the chain rule and only partial derivatives to a node are stored. First, for the forward process, the partial derivatives are stored for each node. For the reverse process, it starts with the differentiation to the last node, and then activations in the forward process are deployed in the differentiation differentiation step by step. 
+
 
 ### 2.4 Forward Mode v.s. Reverse Mode
 
 Two main aspects can be considered when choosing between Forward and Reverse mode auto differentiation.
 * Memory Storage & Time of Computation
+
 The forward mode needs memory storage for values and derivatives for each node, while the reverse mode only needs to store the activations of partial differentiation to each node. The forward mode do the computation at the same time as the variable evaluation, while the reverse mode do the calculation in the backward process.
 * Input & Output Dimensionality
+
 If the input dimension is much larger than output dimension, then reverse mode is more attractive. If the output dimension is much larger than the input dimension, the forward mode is much computational cheaper.
+
+
 
 
 
