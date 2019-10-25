@@ -12,6 +12,28 @@ Our package allows users to calculate derivatives of complex functions, some wit
 
 Essentially automatic differentiation works by  breaking down a complicated function and performing a sequence of elementary arithmetic such as addition, subtraction, multiplication, and division as well as elementary functions like exp, log, sin, etc. These operations are then repeated by the chain rule and the derivatives of these sequences are calculated. There are two ways that automatic differentiation can be implemented - forward mode and reverse mode. 
 
+The chain rule makes up a fundamental component of auto differentiation. The basic idea is:
+For univariate function,
+$$
+F(x) = f(g(x))
+$$
+$$
+F^{\prime} = (f(g))^{\prime} = f^{\prime}(g(x))g^{\prime}(x)
+$$
+For multivariate function,
+$$
+F(x) = f(g(x),h(x))
+$$
+$$
+\frac{\partial F}{\partial x}=\frac{\partial f}{\partial g} \frac{\partial g}{\partial x}+\frac{\partial f}{\partial h} \frac{\partial h}{\partial x}
+$$
+For more generalized cases, if F is a combination of more sub-functions,
+$$
+F(x) = f(g_{1}(x), g_{2}(x), …, g_{m}(x))
+$$
+$$
+\frac{\partial F}{\partial x}=\sum_{i=1}^{m}\frac{\partial F}{\partial g_{i}} \frac{\partial g_{i}}{\partial x}
+$$
 
 ### 2.1 The Chain Rule
 
