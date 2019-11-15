@@ -27,7 +27,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.sin(x._val, np.cos(x._der)))
+            return Scalar(np.sin(x._val), x._der*np.cos(x._val))
             
         except AttributeError: # If contant
             return np.sin(x)
@@ -55,7 +55,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.cos(x._val, -np.sin(x._der)))
+            return Scalar(np.cos(x._val), -np.sin(x._val)*x._der))
             
         except AttributeError: # If contant
             return np.cos(x)
@@ -83,7 +83,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.tan(x._val, 1/np.cos(x._der)**2))
+            return Scalar(np.tan(x._val), x._der/np.cos(x._val)**2))
             
         except AttributeError: # If contant
             return np.tan(x)
@@ -111,7 +111,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.arcsin(x._val), 1/(1-x._der**2)**.5)
+            return Scalar(np.arcsin(x._val), 1/(x._der*(1-x._val**2)**.5))
             
         except AttributeError: # If contant
             return np.arcsin(x)
@@ -139,7 +139,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.arccos(x._val), -1/(1-x._der**2)**.5)
+            return Scalar(np.arccos(x._val), -x._der/(1-x._val**2)**.5)
             
         except AttributeError: # If contant
             return np.arcsin(x)
@@ -167,7 +167,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.arctan(x._val), 1/(1+x._der**2))
+            return Scalar(np.arctan(x._val), x._der/(1+x._val**2))
             
         except: # If contant
             return np.arctan(x)
@@ -195,7 +195,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.log(x._val), 1/x)
+            return Scalar(np.log(x._val), x._der/x._val)
             
         except AttributeError: # If contant
             return np.log(x)
@@ -223,7 +223,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.exp(x._val), np.exp(x))
+            return Scalar(np.exp(x._val), x._der*np.exp(x._val))
             
         except AttributeError: # If contant
             return np.exp(x)
