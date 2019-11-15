@@ -84,4 +84,61 @@ class Operator:
         except AttributeError: # If contant
             return np.exp(x)
         
+    @staticmethod
+    def sinh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.sinh(x._val), np.cosh(x._val))
+   
+        except AttributeError: #if constant
+            return np.sinh(x)  
+      
+    @staticmethod
+    def cosh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.cosh(x._val), np.sinh(x._val))
+   
+        except AttributeError: #if constant
+            return np.cosh(x)
+
+    @staticmethod
+    def tanh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.tanh(x._val), 1-np.tanh(x._val)**2)
+   
+        except AttributeError: #if constant
+            return np.tanh(x)
+
+
+    @staticmethod
+    def arcsinh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.arcsinh(x._val), -np.arcsinh(x._val)*np.arctanh(x._val))
+   
+        except AttributeError: #if constant
+            return np.arcsinh(x)
         
+        
+        
+    @staticmethod
+    def arccosh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.arccosh(x._val), -np.arccosh(x._val)*np.tanh(x._val))
+   
+        except AttributeError: #if constant
+            return np.arccosh(x)
+        
+    @staticmethod
+    def arctanh(x):
+        try: # if scalar variable
+            der = x._der
+            return Scalar(np.arctanh(x._val), 1-np.arctanh(x._val)**2)
+   
+        except AttributeError: #if constant
+            return np.arctanh(x)
+      
+
