@@ -137,7 +137,7 @@ class Operator():
             return Scalar(np.arccos(x._val), -x._der/(1-x._val**2)**.5)
             
         except AttributeError: # If contant
-            return np.arcsin(x)
+            return np.arccos(x)
         
     @staticmethod
     def arctan(x):

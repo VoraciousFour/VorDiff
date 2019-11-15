@@ -1,5 +1,5 @@
-from Vordiff.operator import Operator as op
-from Vordiff.autodiff import AutoDiff as ad
+from VorDiff.operator import Operator as op
+from VorDiff.autodiff import AutoDiff as ad
 import numpy as np
 
 
@@ -30,7 +30,7 @@ def test_tan():
     
     # Scalar
     f = op.tan(x)
-    assert f._val == np.sin(x._val)
+    assert f._val == np.tan(x._val)
     assert f._der == x._der/np.cos(x._val)**2
 
     #Constant
@@ -49,8 +49,8 @@ def test_arcsin():
 def test_arccos():
     
     # Scalar
-    f = op.arcsin(x)
-    assert f._val == np.arcsin(x._val)
+    f = op.arccos(x)
+    assert f._val == np.arccos(x._val)
     assert f._der == -x._der/(1-x._val**2)**.5
 
     #Constant
@@ -69,7 +69,7 @@ def test_arctan():
 def test_log():
     
     # Scalar
-    f = op.arctan(x)
+    f = op.log(x)
     assert f._val == np.log(x._val)
     assert f._der == x._der/x._val
 
@@ -79,12 +79,12 @@ def test_log():
 def test_exp():
     
     # Scalar
-    f = op.arctan(x)
-    assert f._val == np.log(x._val)
+    f = op.exp(x)
+    assert f._val == np.exp(x._val)
     assert f._der == x._der*np.exp(x._val)
 
     #Constant
-    assert op.log(c) == np.log(c)
+    assert op.exp(c) == np.exp(c)
 
 
 def test_sinh():
