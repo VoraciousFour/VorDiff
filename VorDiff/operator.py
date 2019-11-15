@@ -251,7 +251,7 @@ class Operator:
         
         try: # if scalar variable
             der = x._der
-            return Scalar(np.sinh(x._val), np.cosh(x._val))
+            return Scalar(np.sinh(x._val), x._der*(np.cosh(x._val)))
    
         except AttributeError: #if constant
             return np.sinh(x)  
@@ -278,7 +278,7 @@ class Operator:
         '''
         try: # if scalar variable
             der = x._der
-            return Scalar(np.cosh(x._val), np.sinh(x._val))
+            return Scalar(np.cosh(x._val), x._der*(np.sinh(x._val)))
    
         except AttributeError: #if constant
             return np.cosh(x)
@@ -305,7 +305,7 @@ class Operator:
         '''
         try: # if scalar variable
             der = x._der
-            return Scalar(np.tanh(x._val), 1-np.tanh(x._val)**2)
+            return Scalar(np.tanh(x._val), x._der*(1-np.tanh(x._val)**2))
    
         except AttributeError: #if constant
             return np.tanh(x)
@@ -333,7 +333,7 @@ class Operator:
         '''
         try: # if scalar variable
             der = x._der
-            return Scalar(np.arcsinh(x._val), -np.arcsinh(x._val)*np.arctanh(x._val))
+            return Scalar(np.arcsinh(x._val), x._der*(-np.arcsinh(x._val)*np.arctanh(x._val)))
    
         except AttributeError: #if constant
             return np.arcsinh(x)
@@ -362,7 +362,7 @@ class Operator:
         '''
         try: # if scalar variable
             der = x._der
-            return Scalar(np.arccosh(x._val), -np.arccosh(x._val)*np.tanh(x._val))
+            return Scalar(np.arccosh(x._val), x._der*(-np.arccosh(x._val)*np.tanh(x._val)))
    
         except AttributeError: #if constant
             return np.arccosh(x)
@@ -389,7 +389,7 @@ class Operator:
         '''
         try: # if scalar variable
             der = x._der
-            return Scalar(np.arctanh(x._val), 1-np.arctanh(x._val)**2)
+            return Scalar(np.arctanh(x._val), x._der*(1-np.arctanh(x._val)**2))
    
         except AttributeError: #if constant
             return np.arctanh(x)
