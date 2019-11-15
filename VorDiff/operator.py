@@ -200,10 +200,16 @@ class Operator():
         '''
         
         try: # If scalar variable
-            return Scalar(np.log(x._val), x._der/x._val)
+            if x._val<=0:
+                raise ValueError('out of domain')
+            else:    
+                return Scalar(np.log(x._val), x._der/x._val)
             
         except AttributeError: # If contant
-            return np.log(x)
+            if x<=0:
+                raise ValueError('out of domain')
+            else:
+                return np.log(x)
         
     @staticmethod
     def exp(x):
@@ -361,10 +367,16 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            return Scalar(np.arccosh(x._val), x._der*(-np.arccosh(x._val)*np.tanh(x._val)))
+            if x._val<1:
+                raise ValueError('out of doman')
+            else:
+                return Scalar(np.arccosh(x._val), x._der*(-np.arccosh(x._val)*np.tanh(x._val)))
    
         except AttributeError: #if constant
-            return np.arccosh(x)
+            if x < 1:
+                raise ValueError('out of domain')
+            else:            
+                return np.arccosh(x)
         
     @staticmethod
     def arctanh(x):
@@ -387,9 +399,15 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            return Scalar(np.arctanh(x._val), x._der*(1-np.arctanh(x._val)**2))
+            if x._val<-1 or x._val>1:
+                raise ValueError('out of domain')
+            else:
+                return Scalar(np.arctanh(x._val), x._der*(1-np.arctanh(x._val)**2))
    
         except AttributeError: #if constant
-            return np.arctanh(x)
+            if x._val<-1 or x._val>1:
+                raise ValueError('out of domain')
+            else:
+                return np.arctanh(x)
       
 
