@@ -1,5 +1,5 @@
-from Vordiff.operator import Operator as op
-from Vordiff.autodiff import AutoDiff as ad
+from VorDiff.operator import Operator as op
+from VorDiff.autodiff import AutoDiff as ad
 import numpy as np
 
 
