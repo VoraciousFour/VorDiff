@@ -2,7 +2,7 @@ import numpy as np
 from VorDiff.nodes.scalar import Scalar
 
 
-class Operator:
+class Operator():
     
     @staticmethod
     def sin(x):
