@@ -230,6 +230,25 @@ class Operator:
         
     @staticmethod
     def sinh(x):
+        '''
+        Returns the sinh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        sinh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant sinh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
+        
         try: # if scalar variable
             der = x._der
             return Scalar(np.sinh(x._val), np.cosh(x._val))
@@ -239,6 +258,24 @@ class Operator:
       
     @staticmethod
     def cosh(x):
+        '''
+        Returns the cosh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        cosh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant cosh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
         try: # if scalar variable
             der = x._der
             return Scalar(np.cosh(x._val), np.sinh(x._val))
@@ -248,6 +285,24 @@ class Operator:
 
     @staticmethod
     def tanh(x):
+        '''
+        Returns the tanh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        tanh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant tanh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
         try: # if scalar variable
             der = x._der
             return Scalar(np.tanh(x._val), 1-np.tanh(x._val)**2)
@@ -258,6 +313,24 @@ class Operator:
 
     @staticmethod
     def arcsinh(x):
+        '''
+        Returns the arcsinh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        arcsinh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant arcsinh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
         try: # if scalar variable
             der = x._der
             return Scalar(np.arcsinh(x._val), -np.arcsinh(x._val)*np.arctanh(x._val))
@@ -269,6 +342,24 @@ class Operator:
         
     @staticmethod
     def arccosh(x):
+        '''
+        Returns the arccosh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        arccosh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant arccosh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
         try: # if scalar variable
             der = x._der
             return Scalar(np.arccosh(x._val), -np.arccosh(x._val)*np.tanh(x._val))
@@ -278,6 +369,24 @@ class Operator:
         
     @staticmethod
     def arctanh(x):
+        '''
+        Returns the arctanh of a given constant or scalar
+        
+        INPUTS
+        =======
+        x: Numeric constant or Scalar object
+
+        RETURNS
+        =======
+        arctanh of numeric constant or Scalar object
+        
+        NOTES
+        =======
+        If x is a constant, this method returns the constant arctanh(x). If
+        x is a Scalar object, this method returns a new Scalar with the
+        appropriate functions performed on the Scalar's value and
+        derivative.
+        '''
         try: # if scalar variable
             der = x._der
             return Scalar(np.arctanh(x._val), 1-np.arctanh(x._val)**2)
