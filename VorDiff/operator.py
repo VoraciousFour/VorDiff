@@ -1,5 +1,5 @@
 import numpy as np
-from nodes.scalar import Scalar
+from VorDiff.nodes.scalar import Scalar
 
 
 class Operator():
@@ -26,7 +26,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.sin(x._val), x._der*np.cos(x._val))
             
         except AttributeError: # If contant
@@ -54,7 +53,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.cos(x._val), -np.sin(x._val)*x._der)
             
         except AttributeError: # If contant
@@ -82,7 +80,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.tan(x._val), x._der/np.cos(x._val)**2)
             
         except AttributeError: # If contant
@@ -110,7 +107,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.arcsin(x._val), 1/(x._der*(1-x._val**2)**.5))
             
         except AttributeError: # If contant
@@ -138,7 +134,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.arccos(x._val), -x._der/(1-x._val**2)**.5)
             
         except AttributeError: # If contant
@@ -166,7 +161,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.arctan(x._val), x._der/(1+x._val**2))
             
         except: # If contant
@@ -194,7 +188,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.log(x._val), x._der/x._val)
             
         except AttributeError: # If contant
@@ -222,7 +215,6 @@ class Operator():
         '''
         
         try: # If scalar variable
-            der = x._der 
             return Scalar(np.exp(x._val), x._der*np.exp(x._val))
             
         except AttributeError: # If contant
@@ -250,7 +242,6 @@ class Operator():
         '''
         
         try: # if scalar variable
-            der = x._der
             return Scalar(np.sinh(x._val), x._der*(np.cosh(x._val)))
    
         except AttributeError: #if constant
@@ -277,7 +268,6 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            der = x._der
             return Scalar(np.cosh(x._val), x._der*(np.sinh(x._val)))
    
         except AttributeError: #if constant
@@ -304,7 +294,6 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            der = x._der
             return Scalar(np.tanh(x._val), x._der*(1-np.tanh(x._val)**2))
    
         except AttributeError: #if constant
@@ -332,7 +321,6 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            der = x._der
             return Scalar(np.arcsinh(x._val), x._der*(-np.arcsinh(x._val)*np.arctanh(x._val)))
    
         except AttributeError: #if constant
@@ -361,7 +349,6 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            der = x._der
             return Scalar(np.arccosh(x._val), x._der*(-np.arccosh(x._val)*np.tanh(x._val)))
    
         except AttributeError: #if constant
@@ -388,7 +375,6 @@ class Operator():
         derivative.
         '''
         try: # if scalar variable
-            der = x._der
             return Scalar(np.arctanh(x._val), x._der*(1-np.arctanh(x._val)**2))
    
         except AttributeError: #if constant

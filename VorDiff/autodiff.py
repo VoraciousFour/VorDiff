@@ -1,4 +1,4 @@
-from nodes.scalar import Scalar
+from VorDiff.nodes.scalar import Scalar
 
 
 class AutoDiff():
@@ -21,4 +21,4 @@ class AutoDiff():
         Scalar objects
         '''
         
-        return Scalar(val=val, der=1)
+        return Scalar(val, 1)
