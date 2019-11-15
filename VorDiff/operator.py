@@ -55,7 +55,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.cos(x._val), -np.sin(x._val)*x._der))
+            return Scalar(np.cos(x._val), -np.sin(x._val)*x._der)
             
         except AttributeError: # If contant
             return np.cos(x)
@@ -83,7 +83,7 @@ class Operator:
         
         try: # If scalar variable
             der = x._der 
-            return Scalar(np.tan(x._val), x._der/np.cos(x._val)**2))
+            return Scalar(np.tan(x._val), x._der/np.cos(x._val)**2)
             
         except AttributeError: # If contant
             return np.tan(x)
