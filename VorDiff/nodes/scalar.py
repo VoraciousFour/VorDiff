@@ -7,6 +7,7 @@ Created on Fri Nov 15 13:09:28 2019
 """
 
 
+import numpy as np
 
 class Scalar():
     
@@ -118,32 +119,19 @@ class Scalar():
         return Scalar(self._val*other, self._der*other)
     
     def __sub__(self, other):
-        """
-        Return a Scalar object whose value is the difference between self and other 
-        when other is a Scalar object.
-        
-        INPUTS
-        =======
-        self: Scalar object
-        other: Scalar object
-        
-        RETURNS
-        =======
-        a new Scalar object whose value is the difference between the values of
-        the Scalar self and other and whose derivative is the new derivative of the function
-        that subtracts other from Scalar self with respect to the single variable.
+        """Return a Scalar object with value self - other"""
+        return self + (-other)
         """
         try:
             return Scalar(self._val-other._val, self._der-other._der)
         except AttributeError:
             return self.__rsub__(other)
+        """
     
     def __rsub__(self, other):
-        """
-        Return a Scalar object whose value is the difference between self and other
-        when other is a numeric type constant.
-        """
-        return Scalar(self._val-other, self._der)
+        """Return a Scalar object with value other - self"""
+        #return Scalar(self._val-other, self._der)
+        return -self + other
     
     def __truediv__(self, other):
         """
@@ -153,7 +141,7 @@ class Scalar():
         INPUTS
         =======
         self: Scalar object
-        other: Scalar object
+        other: either a Scalar object or numeric type constant
         
         RETURNS
         =======
@@ -161,17 +149,25 @@ class Scalar():
         the Scalar self and other and whose derivative is the new derivative of the function
         that divides Scalar self by other with respect to the single variable.
         """
+        """
         try:
-            return Scalar(self._val/other._val, -(self._val*other._der-self._der*other._val)/(other._val**2))
+            return Scalar(self._val/other._val, (self._der*other._val-self._val*other._der)/(other._val**2))
         except AttributeError:
-            return self.__rtruediv__(other)
+            #return self.__rtruediv__(other)
+            return Scalar(self._val/other, self._der/other)
+        """
+        try:
+            return Scalar(self._val/other._val, (self._der*other._val-self._val*other._der)/(other._val**2))
+        except AttributeError:
+            return Scalar(self._val/other, self._der/other)
     
     def __rtruediv__(self, other):
         """
         Return a Scalar object whose value is the quotient of self and other
         when other is a numeric type constant.
         """
-        return Scalar(self._val/other, self._der/other)
+        return Scalar(other/self._val, other*(-self._der)/(self._val)**2)
+
         
     def __pow__(self, other):
         
@@ -190,18 +186,24 @@ class Scalar():
         This method returns a Scalar object that is calculated from the 
         self Scalar class instance raised to the power of other
         """
-
+        """
         try:
             return Scalar(self._val**other._val, other._val*(self._val)**(other._val-1)*self._der)
         except AttributeError:
             return self.__rpow__(other)
-    
+        """
+        try:
+            return Scalar(self._val**other._val, (other._val*self._der/self._val+np.log(self._val)*other._der)*(self._val**other._val))
+        except AttributeError:
+            return Scalar(self._val**other, other*(self._val**(other-1))*self._der)
+            
     def __rpow__(self, other):
         """
         Return a Scalar object that is calculated by taking the value of other
         and raising it to the power of self when other is a numeric type constant.
         """
-        return Scalar(self._val**other, other*(self._val)**(other-1)*self._der)
+        return Scalar(other**self._val, (other**self._val)*np.log(other)*self._der)
+        #return Scalar(self._val**other, other*(self._val)**(other-1)*self._der)
     
     def __neg__(self):
         """
