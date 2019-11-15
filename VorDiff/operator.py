@@ -368,7 +368,7 @@ class Operator():
         '''
         try: # if scalar variable
             if x._val<1:
-                raise ValueError('out of doman')
+                raise ValueError('out of domain')
             else:
                 return Scalar(np.arccosh(x._val), x._der*(-np.arccosh(x._val)*np.tanh(x._val)))
    
@@ -405,7 +405,7 @@ class Operator():
                 return Scalar(np.arctanh(x._val), x._der*(1-np.arctanh(x._val)**2))
    
         except AttributeError: #if constant
-            if x._val<-1 or x._val>1:
+            if x<-1 or x>1:
                 raise ValueError('out of domain')
             else:
                 return np.arctanh(x)

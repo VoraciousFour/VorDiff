@@ -6,7 +6,9 @@ import numpy as np
 
 
 x = ad.scalar(0.5)
-c = 1
+c = 0.5
+y = ad.scalar(2.0)
+d = 2.0
 
 def test_sin():
     
@@ -118,7 +120,7 @@ def test_tanh():
 
 def test_arcsinh():
     # Scalar
-    f = op.arcsinh()
+    f = op.arcsinh(x)
     assert f._val == np.arcsinh(x._val)
     assert f._der == (-np.arcsinh(x._val))*np.arctanh(x._val)*x._der
 
@@ -127,12 +129,12 @@ def test_arcsinh():
 
 def test_arccosh():
     # Scalar
-    f = op.arccosh(x)
-    assert f._val == np.arccosh(x._val)
-    assert f._der == -np.arccosh(x._val)*np.tanh(x._val)*x._der
+    f = op.arccosh(y)
+    assert f._val == np.arccosh(y._val)
+    assert f._der == -np.arccosh(y._val)*np.tanh(y._val)*y._der
 
     #Constant
-    assert op.arccosh(c) == np.arccosh(c)
+    assert op.arccosh(d) == np.arccosh(d)
 
 def test_arctanh():
     # Scalar
@@ -142,3 +144,18 @@ def test_arctanh():
 
     #Constant
     assert op.arctanh(c) == np.arctanh(c)
+
+test_sin()
+test_cos()
+test_tan()
+test_arcsin()
+test_arccos()
+test_arctan()
+test_sinh()
+test_cosh()
+test_tanh()
+test_arccosh()
+test_arcsinh()
+test_arctanh()
+test_log()
+test_exp()
