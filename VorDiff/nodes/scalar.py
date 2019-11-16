@@ -161,7 +161,7 @@ class Scalar():
         INPUTS
         =======
         self: Scalar object
-        other: either a Scalar object or numeric type constant
+        other: numeric type constant
         
         RETURNS
         =======
@@ -174,16 +174,14 @@ class Scalar():
         """
         
         try:
-            return Scalar(self._val**other._val, (other._val*self._der/self._val+np.log(self._val)*other._der)*(self._val**other._val))
-        except AttributeError:
             return Scalar(self._val**other, other*(self._val**(other-1))*self._der)
-            
+        except AttributeError:
+            return self.__rpow__(other)
+    
     def __rpow__(self, other):
-        """
-        Return a Scalar object that is calculated by taking the value of other
-        and raising it to the power of self when other is a numeric type constant.
-        """
-        return Scalar(other**self._val, (other**self._val)*np.log(other)*self._der)
+        """Return a Scalar object that is calculated from other raised to the power of other"""
+        return Scalar(other**self._val, self._der*np.log(other)*other**self._val)
+         
     
     def __neg__(self):
         """
