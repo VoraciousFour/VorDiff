@@ -8,8 +8,9 @@ Created on Fri Nov 15 17:20:36 2019
 import sys
 sys.path.append("..")
 
-from scalar import Scalar
+import numpy as np
 
+from scalar import Scalar
 
 # Define scalar object and initialize parameters
 
@@ -42,6 +43,7 @@ f_10 = 2 / f
 # Power functions
 h_1 = f ** 2
 h_2 = 2 ** f
+h_3 = f ** g
 
 
 
@@ -85,6 +87,9 @@ def test_pow():
     """test the constant to the power of function for both value and derivative"""
     assert h_2.get()[0] == 2**f.get()[0]
     assert h_2.get()[1] == 2**f.get()[0]*np.log(2)*f.get()[1]
+    """test the value of function to the power of function for both value and derivative"""
+    assert h_3.get()[0] == f.get()[0]**g.get()[0]
+    assert h_3.get()[1] == np.exp(g.get()[0]*np.log(f.get()[0]))*(g.get()[1]*np.log(f.get()[0])+g.get()[0]/float(f.get()[0]))
 
 
 def test_divide():
@@ -113,6 +118,4 @@ test_divide()
 test_multiplication()
 test_pow()
 test_neg()
-
-
 
