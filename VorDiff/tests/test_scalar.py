@@ -5,8 +5,11 @@ Created on Fri Nov 15 17:20:36 2019
 
 @author: weiruchen
 """
+import sys
+sys.path.append("..")
 
 from scalar import Scalar
+
 
 # Define scalar object and initialize parameters
 
@@ -30,52 +33,86 @@ f_3 = f - g
 f_4 = g - f
 f_5 = f * g
 f_6 = g * f
-f_7 = f / Scalar(5)
-f_8 = Scalar(5) / f
+f_7 = f / g
+f_8 = g / f
+f_9 = f / 2
+f_10 = 2 / f
+
 
 # Power functions
 h_1 = f ** 2
-h_2 = g ** Scalar(3)
+h_2 = 2 ** f
+
 
 
 def test_addition():
+    """test addition (f+g) for both value and derivative"""
     assert f_1.get()[0] == f.get()[0] + g.get()[0]
     assert f_1.get()[1] == f.get()[1] + g.get()[1]
+    """test addition (g+f) for both value and derivative"""
     assert f_2.get()[0] == f.get()[0] + g.get()[0]
     assert f_2.get()[1] == f.get()[1] + g.get()[1]
+    """test addition of function and constant for both value and derivative"""
     assert (f_1 + 3.0).get()[0] == f.get()[0] + g.get()[0] + 3.0
     assert (f_1 + 3.0).get()[1] == f.get()[1] + g.get()[1]
 
 def test_subtraction():
+    """test subtraction (f-g) for both value and derivative"""
     assert f_3.get()[0] == f.get()[0] - g.get()[0]
     assert f_3.get()[1] == f.get()[1] - g.get()[1]
+    """test subtraction (g-f) for both value and derivative"""
     assert f_4.get()[0] == g.get()[0] - f.get()[0]
     assert f_4.get()[1] == g.get()[1] - f.get()[1]
+    """test subtraction of constant and function for both value and derivative"""
     assert (3.0 - f_1).get()[0] == 3.0 - f.get()[0] - g.get()[0]
     assert (3.0 - f_1).get()[1] == - f.get()[1] - g.get()[1]
 
 def test_multiplication():
+    """test multiplication (f*g) for both value and derivative"""
     assert f_5.get()[0] == f.get()[0] * g.get()[0]
     assert f_5.get()[1] == f.get()[0] * g.get()[1] + f.get()[1] * g.get()[0]
+    """test multiplication (g*f) for both value and derivative"""
     assert f_6.get()[0] == g.get()[0] * f.get()[0]
     assert f_6.get()[1] == g.get()[0] * f.get()[1] + g.get()[1] * f.get()[0]
+    """test multiplication of constant and function for both value and derivative"""
+    assert (3*f).get()[0] == 3*(f.get()[0])
+    assert (3*f).get()[1] == 3*(f.get()[1])
 
 def test_pow():
+    """test the function to the power of constant for both value and derivative"""
     assert h_1.get()[0] == f.get()[0]**2
     assert h_1.get()[1] == 2*f.get()[0]*f.get()[1]
-    assert h_2.get()[0] == g.get()[0]**3
-    assert h_2.get()[1] == 3*(g.get()[0]**2)*g.get()[1]
-"""
+    """test the constant to the power of function for both value and derivative"""
+    assert h_2.get()[0] == 2**f.get()[0]
+    assert h_2.get()[1] == 2**f.get()[0]*np.log(2)*f.get()[1]
+
+
 def test_divide():
-    assert f_7.get()[0] == f.get()[0] / Scalar(5).get()[0]
-    assert f_7.get()[1] == f.get()[1] / Scalar(5).get()[1]
-    assert f_8.get()[0] == Scalar(5).get()[0] / f.get()[0]
-    assert f_8.get()[1] == Scalar(5).get()[1] / f.get()[1]
+    """test division (f/g) for both value and derivative"""
+    assert f_7.get()[0] == f.get()[0] / g.get()[0]
+    assert f_7.get()[1] == (f.get()[1]*g.get()[0]-f.get()[0]*g.get()[1]) / g.get()[0]**2
+    """test division (g/f) for both value and derivative"""
+    assert f_8.get()[0] == g.get()[0] / f.get()[0]
+    assert f_8.get()[1] == (g.get()[1]*f.get()[0]-g.get()[0]*f.get()[1]) / f.get()[0]**2
+    """test division of function and constant for both value and derivative"""
+    assert f_9.get()[0] == f.get()[0] / 2.0
+    assert f_9.get()[1] == f.get()[1] / 2.0
+    """test division of constant and function for both value and derivative"""
+    assert f_10.get()[0] == 2.0 / f.get()[0]
+    assert f_10.get()[1] == -2.0 * f.get()[1] / f.get()[0]**2
+    
+
+def test_neg():
+    """test negation (-f) for both value and derivative"""
+    assert (-f).get()[0] == -(f.get()[0])
+    assert (-f).get()[1] == -(f.get()[1])
+    
 test_addition()
 test_subtraction()
 test_divide()
-print(f_8.get())
-print(f.get()[0] / Scalar(5).get()[0])
 test_multiplication()
 test_pow()
-"""
+test_neg()
+
+
+
