@@ -174,9 +174,9 @@ class Scalar():
         """
         
         try:
-            return Scalar(self._val**other, other*(self._val**(other-1))*self._der)
+            return Scalar(self._val**other._val, np.exp(other._val*np.log(self._val))*(other._der*np.log(self._val)+other._val/float(self._val)))
         except AttributeError:
-            return self.__rpow__(other)
+            return Scalar(self._val**other, other*(self._val**(other-1))*self._der)
     
     def __rpow__(self, other):
         """Return a Scalar object that is calculated from other raised to the power of other"""
