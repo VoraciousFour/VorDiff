@@ -5,12 +5,14 @@ Created on Fri Nov 15 17:20:36 2019
 
 @author: weiruchen
 """
-#import sys
-#sys.path.append('..')
+import sys
+sys.path.append('..')
 
+import pytest
 import numpy as np
 
-from VorDiff.nodes.scalar import Scalar
+from nodes.scalar import Scalar
+
 
 # Define scalar object and initialize parameters
 
