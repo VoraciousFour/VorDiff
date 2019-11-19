@@ -1,4 +1,2 @@
-numpy
-math
-sys
+numpy>=1.16.1
 
