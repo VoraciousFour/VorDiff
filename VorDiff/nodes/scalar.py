@@ -161,7 +161,7 @@ class Scalar():
         INPUTS
         =======
         self: Scalar object
-        other: numeric type constant
+        other: either a Scalar object or  numeric type constant
         
         RETURNS
         =======
@@ -179,7 +179,7 @@ class Scalar():
             return Scalar(self._val**other, other*(self._val**(other-1))*self._der)
     
     def __rpow__(self, other):
-        """Return a Scalar object that is calculated from other raised to the power of other"""
+        """Return a Scalar object that is calculated from other raised to the power of the Scalar class instance"""
         return Scalar(other**self._val, self._der*np.log(other)*other**self._val)
          
     
