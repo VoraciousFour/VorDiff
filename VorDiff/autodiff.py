@@ -28,7 +28,7 @@ class AutoDiff():
     @staticmethod
     def vector(vec):
         '''
-        Creates a Vector object with the vector given and jthe acobian matrix
+        Creates a Vector object with the vector given and the jacobian matrix
         
         INPUTS
         =======
