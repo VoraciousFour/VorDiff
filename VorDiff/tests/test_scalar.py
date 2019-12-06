@@ -77,6 +77,9 @@ def test_multiplication():
     """test multiplication (g*f) for both value and derivative"""
     assert f_6.get()[0] == g.get()[0] * f.get()[0]
     assert f_6.get()[1] == g.get()[0] * f.get()[1] + g.get()[1] * f.get()[0]
+    """test multiplication of function and constant for both value and derivative"""
+    assert (f*3).get()[0] == 3*(f.get()[0])
+    assert (f*3).get()[1] == 3*(f.get()[1])
     """test multiplication of constant and function for both value and derivative"""
     assert (3*f).get()[0] == 3*(f.get()[0])
     assert (3*f).get()[1] == 3*(f.get()[1])
