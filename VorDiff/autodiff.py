@@ -1,4 +1,6 @@
 from VorDiff.nodes.scalar import Scalar
+from VorDiff.nodes.vector import Vector
+import numpy as np
 
 
 class AutoDiff():
@@ -22,3 +24,18 @@ class AutoDiff():
         '''
         
         return Scalar(val, 1)
+
+    @staticmethod
+    def vector(vec):
+        '''
+        Creates a Vector object with the vector given and jthe acobian matrix
+        
+        INPUTS
+        =======
+        val: The numeric values at which to evaluate
+        
+        RETURNS
+        =======
+        Vector objects
+        '''
+        return Vector(vec, np.eye(len(vec)))
