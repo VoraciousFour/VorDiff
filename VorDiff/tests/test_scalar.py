@@ -11,6 +11,7 @@ Created on Fri Nov 15 17:20:36 2019
 import numpy as np
 
 from VorDiff.nodes.scalar import Scalar
+from VorDiff.autodiff import AutoDiff as ad
 
 
 # Define scalar object and initialize parameters
@@ -21,7 +22,7 @@ c = 1.0
 d = 3.0
 
 
-x = Scalar(a)
+x = ad.scalar(a)
 
 
 f = a * x + b
