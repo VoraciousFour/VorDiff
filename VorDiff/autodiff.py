@@ -1,5 +1,8 @@
 from VorDiff.nodes.scalar import Scalar
 from VorDiff.nodes.element import Element
+from VorDiff.nodes.vector import Vector
+import numpy as np
+
 
 class AutoDiff():
     '''
@@ -38,4 +41,19 @@ class AutoDiff():
         '''
         return Element(val,jacob)
 
+
+    @staticmethod
+    def vector(vec):
+        '''
+        Creates a Vector object with the vector given and the jacobian matrix
         
+        INPUTS
+        =======
+        val: The numeric values at which to evaluate
+        
+        RETURNS
+        =======
+        Vector objects
+        '''
+        return Vector(vec, np.eye(len(vec)))
+
