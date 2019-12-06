@@ -1,6 +1,5 @@
 from VorDiff.nodes.scalar import Scalar
-from VorDiff.nodes.vector import Element
-from VorDiff.nodes.vector import Vector
+from VorDiff.nodes.vector import Vector, Element
 import numpy as np
 
 
