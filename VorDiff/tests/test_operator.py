@@ -28,7 +28,7 @@ def test_sin():
     #element
     g = op.sin(z)
     assert g._val == np.sin(z._val)
-    assert g._jacob == np.cos(z._val)*z._jacob
+    assert (g._jacob == np.cos(z._val)*z._jacob).all()
 
 def test_cos():
     
@@ -43,7 +43,7 @@ def test_cos():
     #element
     g = op.cos(z)
     assert g._val == np.cos(z._val)
-    assert g._jacob == -np.sin(z._val)*z._jacob
+    assert (g._jacob == -np.sin(z._val)*z._jacob).all()
     
 def test_tan():
     
