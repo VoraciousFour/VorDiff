@@ -207,9 +207,9 @@ def test_arcsinh():
     assert op.arcsinh(c) == np.arcsinh(c)
 
     #element
-    g = op.arcsinh(z)
-    assert g._val == np.arcsinh(z._val)
-    assert (g._jacob == z._jacob*(-np.arcsinh(z._val)*np.arctanh(z._val))).all()
+    g = op.arcsinh(k)
+    assert g._val == np.arcsinh(k._val)
+    assert (g._jacob == k._jacob*(-np.arcsinh(k._val)*np.arctanh(k._val))).all()
 
 
 def test_arccosh():
