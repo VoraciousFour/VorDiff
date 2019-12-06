@@ -131,17 +131,17 @@ class Operator():
             else:
                 return Element(np.arcsin(x._val), 1/(x._jacob*(1-x._val**2)**.5))
         except AttributeError:
-        try: # If scalar variable
-            if x._val<-1 or x._val>1:
-                raise ValueError('out of domain')
-            else:
-                return Scalar(np.arcsin(x._val), 1/(x._der*(1-x._val**2)**.5))
+            try: # If scalar variable
+                if x._val<-1 or x._val>1:
+                    raise ValueError('out of domain')
+                else:
+                    return Scalar(np.arcsin(x._val), 1/(x._der*(1-x._val**2)**.5))
             
-        except AttributeError: # If contant
-            if x<-1 or x>1:
-                raise ValueError('out of domain')
-            else:
-                return np.arcsin(x)
+            except AttributeError: # If contant
+                if x<-1 or x>1:
+                    raise ValueError('out of domain')
+                else:
+                    return np.arcsin(x)
         
     @staticmethod
     def arccos(x):
