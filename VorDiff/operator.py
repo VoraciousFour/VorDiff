@@ -1,7 +1,7 @@
 import numpy as np
 import math
 from VorDiff.nodes.scalar import Scalar
-from VorDiff.nodes.Vector import Vector,Element
+from VorDiff.nodes.vector import Vector,Element
 
 
 class Operator():
