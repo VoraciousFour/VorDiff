@@ -297,7 +297,7 @@ class Operator():
         if len(args) == 2:
         	return exp_(args[0],args[1])
         else:
-            x = args[1]
+            x = args[0]
             try:
                  return Element(np.exp(x._val), x._jacob*(np.exp(x._val)))
             except AttributeError:
