@@ -297,7 +297,7 @@ class Operator():
         if len(args) == 2:
         	return exp_(args[0],args[1])
         else:
-            x = args[1]
+            x = args[0]
             try:
                  return Element(np.exp(x._val), x._jacob*(np.exp(x._val)))
             except AttributeError:
@@ -393,7 +393,7 @@ class Operator():
         value and Jacobian matrix.
         '''
         try:
-            return 	Element(np.ranh(x._val), x._jacob*(1-np.tanh(x._val)**2))
+            return 	Element(np.tanh(x._val), x._jacob*(1-np.tanh(x._val)**2))
         except AttributeError:
             try: # if scalar variable
                 return Scalar(np.tanh(x._val), x._der*(1-np.tanh(x._val)**2))

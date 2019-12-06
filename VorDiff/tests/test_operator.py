@@ -28,7 +28,7 @@ def test_sin():
     #element
     g = op.sin(z)
     assert g._val == np.sin(z._val)
-    assert g._jacob == np.cos(z._val)*z._jacob
+    assert (g._jacob == np.cos(z._val)*z._jacob).all()
 
 def test_cos():
     
@@ -43,7 +43,7 @@ def test_cos():
     #element
     g = op.cos(z)
     assert g._val == np.cos(z._val)
-    assert g._jacob == -np.sin(z._val)*z._jacob
+    assert (g._jacob == -np.sin(z._val)*z._jacob).all()
     
 def test_tan():
     
@@ -58,7 +58,7 @@ def test_tan():
     #element
     g = op.tan(z)
     assert g._val == np.tan(z._val)
-    assert g._jacob == z._jacob/np.cos(z._val)**2
+    assert (g._jacob == z._jacob/np.cos(z._val)**2).all()
     
 def test_arcsin():
     
@@ -76,7 +76,7 @@ def test_arcsin():
     except:
         g = op.arcsin(k)
         assert g._val == np.arcsin(k._val)
-        assert g._jacob == 1/(k._jacob*(1-k._val**2)**.5)
+        assert (g._jacob == 1/(k._jacob*(1-k._val**2)**.5)).all()
     
 def test_arccos():
     
@@ -94,7 +94,7 @@ def test_arccos():
     except:
         g = op.arccos(k)
         assert g._val == np.arccos(k._val)
-        assert g._jacob == -k._jacob/(1-k._val**2)**.5
+        assert (g._jacob == -k._jacob/(1-k._val**2)**.5).all()
     
 def test_arctan():
     
@@ -110,7 +110,7 @@ def test_arctan():
 
     g = op.arctan(z)
     assert g._val == np.arctan(z._val)
-    assert g._jacob == z._jacob/(1+z._val**2)
+    assert (g._jacob == z._jacob/(1+z._val**2)).all()
 
 def test_log():
 
@@ -125,11 +125,11 @@ def test_log():
     #element
     g = op.log(z)
     assert g._val == np.log(z._val)
-    assert g._jacob == z._jacob/z._val
+    assert (g._jacob == z._jacob/z._val).all()
 
     h = op.log(2,z)
-    assert g._val == math.log(2,z._val)
-    assert g._jacob == z._jacob/(z._val*np.log(2))
+    assert h._val == math.log(2,z._val)
+    assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 def test_exp():
     
@@ -144,11 +144,11 @@ def test_exp():
     #element
     g = op.exp(z)
     assert g._val == np.exp(z._val)
-    assert g._jacob == z._jacob*(np.exp(z._val))
+    assert (g._jacob == z._jacob*(np.exp(z._val))).all()
 
     h = op.exp(2,z)
-    assert g._val == 2**z._val
-    assert g._jacob == z._jacob*np.log(a)*(a**z._val)
+    assert h._val == 2**z._val
+    assert (h._jacob == z._jacob*np.log(2)*(2**z._val)).all()
 
 def test_sinh():
     
@@ -163,7 +163,7 @@ def test_sinh():
     #element
     g = op.sinh(z)
     assert g._val == np.sinh(z._val)
-    assert g._jacob == z._jacob*(np.cosh(z._val))
+    assert (g._jacob == z._jacob*(np.cosh(z._val))).all()
 
 
 def test_cosh():
@@ -179,7 +179,7 @@ def test_cosh():
     #element
     g = op.cosh(k)
     assert g._val == np.cosh(k._val)
-    assert g._jacob == z._jacob*(np.sinh(k._val))
+    assert (g._jacob == z._jacob*(np.sinh(k._val))).all()
 
 def test_tanh():
 
@@ -194,7 +194,7 @@ def test_tanh():
     #element
     g = op.tanh(z)
     assert g._val == np.tanh(z._val)
-    assert g._jacob == z._jacob*(1-np.tanh(z._val)**2)
+    assert (g._jacob == z._jacob*(1-np.tanh(z._val)**2)).all()
 
 def test_arcsinh():
 
@@ -209,7 +209,7 @@ def test_arcsinh():
     #element
     g = op.arcsinh(z)
     assert g._val == np.arcsinh(z._val)
-    assert g._jacob == z._jacob*(-np.arcsinh(z._val)*np.arctanh(z._val))
+    assert (g._jacob == z._jacob*(-np.arcsinh(z._val)*np.arctanh(z._val))).all()
 
 
 def test_arccosh():
@@ -225,7 +225,7 @@ def test_arccosh():
     #element
     g = op.arccosh(k)
     assert g._val == np.arccosh(k._val)
-    assert g._jacob == z._jacob*(-np.arccosh(k._val)*np.tanh(k._val))
+    assert g._jacob == k._jacob*(-np.arccosh(k._val)*np.tanh(k._val))
 
 def test_arctanh():
 
@@ -240,7 +240,7 @@ def test_arctanh():
     #element
     g = op.arctanh(k)
     assert g._val == np.arctanh(k._val)
-    assert g._jacob == k._jacob*(1-np.arctanh(k._val)**2)
+    assert (g._jacob == k._jacob*(1-np.arctanh(k._val)**2)).all()
 
 def test_logistic():
 
@@ -255,7 +255,7 @@ def test_logistic():
     #element
     g = op.logistic(z)
     assert g._val == 1/(1+np.exp(-z._val))
-    assert g._jacob == z._jacob*(z._val**2*np.exp(-z._val))
+    assert (g._jacob == z._jacob*(z._val**2*np.exp(-z._val))).all()
 
 
 def test_square_root():
@@ -271,7 +271,7 @@ def test_square_root():
     #element
     g = op.square_root(z)
     assert g._val == z._val**0.5
-    assert g._jacob == z._jacob*(z._val**(-1/2)/2)
+    assert (g._jacob == z._jacob*(z._val**(-1/2)/2)).all()
 
 
 def test_log_():
@@ -286,8 +286,8 @@ def test_log_():
 
     #element
     h = op.log_(2,z)
-    assert g._val == math.log(2,z._val)
-    assert g._jacob == z._jacob/(z._val*np.log(2))
+    assert h._val == math.log(2,z._val)
+    assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 
 def test_exp_():
@@ -302,8 +302,8 @@ def test_exp_():
 
     #element
     h = op.exp_(2,z)
-    assert g._val == 2**z._val
-    assert g._jacob == z._jacob*np.log(a)*(a**z._val)
+    assert h._val == 2**z._val
+    assert (h._jacob == z._jacob*np.log(2)*(2**z._val)).all()
 
 
 
