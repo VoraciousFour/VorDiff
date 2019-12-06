@@ -1,8 +1,8 @@
 from VorDiff.nodes.vector import Vector
-from VorDiff.autodiff import AutoDiff as ad
+#from VorDiff.autodiff import AutoDiff as ad
 import numpy as np
 
-x = ad.vector([1,2, 3, 4])
+x = Vector([1,2, 3, 4])
 a = 6
 b = 2
 
