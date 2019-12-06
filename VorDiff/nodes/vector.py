@@ -307,7 +307,7 @@ class Element():
         A boolean that indicates if the self object and other object are equal. 
         """
         try:
-            return self._val == other._val and self._jacob == other._jacob
+            return self._val == other._val and (self._jacob == other._jacob).all()
         except AttributeError:
             return False
     
@@ -323,7 +323,7 @@ class Element():
         A boolean that indicates if the self object and other object are not equal. 
         """
         try:
-            return self._val != other._val or self._jacob != other._jacob
+            return self._val != other._val or (self._jacob != other._jacob).any()
         except AttributeError:
             return True
     
