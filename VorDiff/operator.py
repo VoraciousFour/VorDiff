@@ -393,7 +393,7 @@ class Operator():
         value and Jacobian matrix.
         '''
         try:
-            return 	Element(np.ranh(x._val), x._jacob*(1-np.tanh(x._val)**2))
+            return 	Element(np.tanh(x._val), x._jacob*(1-np.tanh(x._val)**2))
         except AttributeError:
             try: # if scalar variable
                 return Scalar(np.tanh(x._val), x._der*(1-np.tanh(x._val)**2))
