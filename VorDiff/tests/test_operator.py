@@ -128,8 +128,8 @@ def test_log():
     assert (g._jacob == z._jacob/z._val).all()
 
     h = op.log(2,z)
-    assert g._val == math.log(2,z._val)
-    assert (g._jacob == z._jacob/(z._val*np.log(2))).all()
+    assert h._val == math.log(2,z._val)
+    assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 def test_exp():
     
@@ -147,8 +147,8 @@ def test_exp():
     assert (g._jacob == z._jacob*(np.exp(z._val))).all()
 
     h = op.exp(2,z)
-    assert g._val == 2**z._val
-    assert (g._jacob == z._jacob*np.log(a)*(a**z._val)).all()
+    assert h._val == 2**z._val
+    assert (h._jacob == z._jacob*np.log(2)*(2**z._val)).all()
 
 def test_sinh():
     
@@ -223,9 +223,9 @@ def test_arccosh():
     assert op.arccosh(d) == np.arccosh(d)
 
     #element
-    g = op.arccosh(z)
-    assert g._val == np.arccosh(z._val)
-    assert (g._jacob == z._jacob*(-np.arccosh(z._val)*np.tanh(z._val))).all()
+    g = op.arccosh(k)
+    assert g._val == np.arccosh(k._val)
+    assert (g._jacob == k._jacob*(-np.arccosh(k._val)*np.tanh(k._val))).all()
 
 def test_arctanh():
 
@@ -286,8 +286,8 @@ def test_log_():
 
     #element
     h = op.log_(2,z)
-    assert g._val == math.log(2,z._val)
-    assert (g._jacob == z._jacob/(z._val*np.log(2))).all()
+    assert h._val == math.log(2,z._val)
+    assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 
 def test_exp_():
@@ -302,8 +302,8 @@ def test_exp_():
 
     #element
     h = op.exp_(2,z)
-    assert g._val == 2**z._val
-    assert (g._jacob == z._jacob*np.log(a)*(a**z._val)).all()
+    assert h._val == 2**z._val
+    assert (h._jacob == z._jacob*np.log(2)*(2**z._val)).all()
 
 
 
