@@ -141,4 +141,24 @@ def test_notequal():
 test_notequal()
 
 
+# Define a vector function and get a jacobian of the vector function to vector
+
+f = [f1, f2, f3, f4, f5]
+derivatives = []
+vals = []
+
+for function in f:
+    vals.append(function.get_val())
+    derivatives.append(function.get_derivatives())
+
+derivatives = np.array(derivatives)
+
+def test_vectorFunctions():
+    assert(vals == [3, 3, -1, 1, 12])
+    assert(np.array_equal(derivatives, np.array([[1,1,0,0], [1,1,0,0], [1,-1,0,0], [-1,1,0,0], [0,0,4,3]])))
+
+test_vectorFunctions()
+
+
+
 
