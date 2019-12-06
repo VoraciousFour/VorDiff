@@ -130,11 +130,11 @@ def test_equal():
 test_equal()
 
 def test_notequal():
-    """test if two functions (e1, e2) are equal"""
+    """test if two functions (e3, e4) are not equal"""
     assert (e3 != e4) == False
-    """test if two functions (e1, e3) are equal"""
+    """test if two functions (e2, e4) are not equal"""
     assert (e2 != e4) == True
-    """test if a function and a constant (e1, a) are equal"""
+    """test if a function and a constant (e1, a) are not equal"""
     assert (e1 != a) == True
 
 test_notequal()
