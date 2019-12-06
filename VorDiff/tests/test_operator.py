@@ -262,7 +262,7 @@ def test_square_root():
 
     #scalar
     f = op.square_root(x)
-    assert f._val == x._val**(-0.5)
+    assert f._val == x._val**(0.5)
     assert f._der == x._der*(x._val**(-1/2)/2)
 
     #constant
