@@ -245,7 +245,7 @@ class Operator():
         value and Jacobian matrix.
         '''
         if len(args) == 2:
-        	return log_(args[0],args[1])
+        	return Operator.log_(args[0],args[1])
         else:
             x = args[0]
             try:
@@ -295,7 +295,7 @@ class Operator():
         value and Jacobian matrix.
         '''
         if len(args) == 2:
-        	return exp_(args[0],args[1])
+        	return Operator.exp_(args[0],args[1])
         else:
             x = args[0]
             try:
