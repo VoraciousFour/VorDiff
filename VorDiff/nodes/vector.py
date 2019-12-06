@@ -265,7 +265,7 @@ class Element():
         """
         try:
             val = self._val**other._val
-            jacob = np.exp(other._val*np.log(self._val))*(other._jacob*np.log(self._val)+other._val/float(self._val))
+            jacob = np.exp(other._val*np.log(self._val))*(other._jacob*np.log(self._val)+other._val/float(self._val)*self._jacob)
             return Element(val, jacob)
         
         except AttributeError:
