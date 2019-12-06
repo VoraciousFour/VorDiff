@@ -546,7 +546,7 @@ class Operator():
                 return Scalar(1/(1+np.exp(-x._val)), x._der*(x._val**2*np.exp(-x._val)))
    
             except AttributeError: #if constant
-                return 1/(1+np.exp(-x._val))
+                return 1/(1+np.exp(-x))
 
 
 
