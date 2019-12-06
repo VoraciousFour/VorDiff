@@ -1,5 +1,5 @@
 from VorDiff.nodes.scalar import Scalar
-
+from VorDiff.nodes.element import Element
 
 class AutoDiff():
     '''
@@ -22,3 +22,20 @@ class AutoDiff():
         '''
         
         return Scalar(val, 1)
+
+    def element(val,jacob):
+        '''
+        Creates an Element object with the value given and jacobian matrix 
+
+        INPUTS
+        =======
+        val: The numeric value of the function
+        jacob: The jacobian matrix value of the function at which to evaluate
+
+        RETURNS
+        =======
+        Element objects
+        '''
+        return Element(val,jacob)
+
+        
