@@ -459,7 +459,7 @@ class Operator():
         '''
         try:
             j = x._jacob
-            if x._val<-1 or x._val>1:
+            if x._val<1:
                 raise ValueError('out of domain')
             else:
                 return 	Element(np.arccosh(x._val), x._jacob*(-np.arccosh(x._val)*np.tanh(x._val)))
