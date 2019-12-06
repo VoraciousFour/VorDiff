@@ -223,9 +223,9 @@ def test_arccosh():
     assert op.arccosh(d) == np.arccosh(d)
 
     #element
-    g = op.arccosh(z)
-    assert g._val == np.arccosh(z._val)
-    assert g._jacob == z._jacob*(-np.arccosh(z._val)*np.tanh(z._val))
+    g = op.arccosh(k)
+    assert g._val == np.arccosh(k._val)
+    assert g._jacob == z._jacob*(-np.arccosh(k._val)*np.tanh(k._val))
 
 def test_arctanh():
 
