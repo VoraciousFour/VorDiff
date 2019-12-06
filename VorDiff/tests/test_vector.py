@@ -1,5 +1,5 @@
-#from VorDiff.nodes.vector import Vector
-import vector
+import VorDiff.nodes.vector
+#import vector
 from VorDiff.autodiff import AutoDiff as ad
 import numpy as np
 
