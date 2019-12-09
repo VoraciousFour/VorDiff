@@ -275,6 +275,7 @@ class Operator():
         INPUTS
         =======
         if the lenth of input is 2:
+        The first is a and the second is x.
         a: Numeric constant
         x: Numeric constant or Scalar object or Element object
         
@@ -620,19 +621,19 @@ class Operator():
             if x._val<=0:
                 raise ValueError('out of domain')
             else:
-                return Element(math.log(a, x._val), x._jacob/(x._val*np.log(a)))
+                return Element(math.log(x._val, a), x._jacob/(x._val*np.log(a)))
         except AttributeError:
             try: # If scalar variable
                 if x._val<=0:
                     raise ValueError('out of domain')
                 else:    
-                    return Scalar(math.log(a, x._val), x._der/(x._val*np.log(a)))
+                    return Scalar(math.log(x._val, a), x._der/(x._val*np.log(a)))
             
             except AttributeError: # If contant
                 if x<=0:
                     raise ValueError('out of domain')
                 else:
-                    return math.log(a,x)
+                    return math.log(x,a)
         
     @staticmethod
     def exp_(a, x):

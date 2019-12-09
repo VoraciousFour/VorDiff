@@ -128,7 +128,7 @@ def test_log():
     assert (g._jacob == z._jacob/z._val).all()
 
     h = op.log(2,z)
-    assert h._val == math.log(2,z._val)
+    assert h._val == math.log(z._val, 2)
     assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 def test_exp():
@@ -278,15 +278,15 @@ def test_log_():
 
     #scalar
     f = op.log_(2,x)
-    assert f._val == math.log(2, x._val)
+    assert f._val == math.log(x._val,2)
     assert f._der == x._der/(x._val*np.log(2))
 
     #constant
-    assert op.log_(2,c) == math.log(2,c)
+    assert op.log_(2,c) == math.log(c,2)
 
     #element
     h = op.log_(2,z)
-    assert h._val == math.log(2,z._val)
+    assert h._val == math.log(z._val,2)
     assert (h._jacob == z._jacob/(z._val*np.log(2))).all()
 
 
