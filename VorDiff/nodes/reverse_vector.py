@@ -91,7 +91,7 @@ class ReverseVector():
         try:
             for child, val in self._children[var]:
                 if child is not None and child._gradient.any() == 0:
-                    child._gradient += self._gradient * val
+                    child._gradient = child._gradient + self._gradient * val
                 if child is not None:
                     child.compute_gradient(var)
         
@@ -127,7 +127,7 @@ class ReverseVector():
             variables = list(other._children.keys())
             for var in variables:
                 if var in list(child._children.keys()):
-                    child._children[var] += [(other, 1)]
+                    child._children[var] = child._children[var] + [(other, 1)]
                 else:
                     child._children[var] = [(other, 1)]
         except AttributeError: # if constant
@@ -207,7 +207,7 @@ class ReverseVector():
             variables = list(other._children.keys())
             for var in variables:
                 if var in list(child._children.keys()):
-                    child._children[var] += [(other, self._val)]
+                    child._children[var] = child._children[var] + [(other, self._val)]
                 else:
                     child._children[var] = [(other, self._val)]
         except AttributeError: # if constant
@@ -252,7 +252,7 @@ class ReverseVector():
             variables = list(other._children.keys())
             for var in variables:
                 if var in list(child._children.keys()):
-                    child._children[var] += [(other, -self._val / (other._val ** 2))]
+                    child._children[var] = child._children[var] + [(other, -self._val / (other._val ** 2))]
                 else:
                     child._children[var] = [(other, -self._val / (other._val ** 2))]
         except AttributeError: # if constant
@@ -314,7 +314,7 @@ class ReverseVector():
             variables = list(other._children.keys())
             for var in variables:
                 if var in list(child._children.keys()):
-                    child._children[var] += [(other, self._val ** other._val * np.log(self._val))]
+                    child._children[var] = child._children[var] + [(other, self._val ** other._val * np.log(self._val))]
                 else:
                     child._children[var] = [(other, self._val ** other._val * np.log(self._val))]
         except AttributeError: # if constant
