@@ -1,4 +1,5 @@
 from VorDiff.nodes.reverse_scalar import ReverseScalar
+from VorDiff.nodes.reverse_vector import ReverseVector
 
 class ReverseAutoDiff():
     '''
