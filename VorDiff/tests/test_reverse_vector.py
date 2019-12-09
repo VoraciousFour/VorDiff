@@ -23,8 +23,8 @@ c_1, c3, c7 = -1, 3, 7
 
 def test_getitem():
     x = ReverseVector([1, 2])
-    assert x[0].get() == 1
-    assert x[1].get() == 2
+    assert x[0].get()[0] == 1
+    assert x[1].get()[0] == 2
 
 test_getitem()
 
