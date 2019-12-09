@@ -11,7 +11,7 @@ class ReverseScalar():
         
     def get(self):
         
-        return self._val
+        return self._val, self.compute_gradient()
     
     def compute_gradient(self):
         
@@ -111,7 +111,7 @@ class ReverseScalar():
         
         except AttributeError: # If constant
             child = ReverseScalar(other/self._val)
-            child._children[self] = -other/self.val**2
+            child._children[self] = -other/self._val**2
             return child
         
     def __pow__(self, other):
@@ -131,13 +131,13 @@ class ReverseScalar():
         
 
         child = ReverseScalar(other**self._val)
-        child._children[self] = np.log(self._val)*self._val**other
+        child._children[self] = np.log(other)*other**self._val
         return child
     
     def __neg__(self):
         
         child = ReverseScalar(-self._val)
-        child.children[self] = -1
+        child._children[self] = -1
         return child
         
         
