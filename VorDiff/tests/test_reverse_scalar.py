@@ -56,6 +56,8 @@ def test_addition():
     """test addition of function and constant for both value and derivative"""
     assert (f_1 + 3.0).get()[0] == f.get()[0] + g.get()[0] + 3.0
     assert (f_1 + 3.0).get()[1] == f.get()[1] + g.get()[1]
+    assert (3.0+f_1).get()[0] == f.get()[0] + g.get()[0] + 3.0
+    assert (3.0+f_1).get()[1] == f.get()[1] + g.get()[1]
 
 def test_subtraction():
     """test subtraction (f-g) for both value and derivative"""
@@ -67,6 +69,8 @@ def test_subtraction():
     """test subtraction of constant and function for both value and derivative"""
     assert (3.0 - f_1).get()[0] == 3.0 - f.get()[0] - g.get()[0]
     assert (3.0 - f_1).get()[1] == - f.get()[1] - g.get()[1]
+    assert (f_1 - 3.0).get()[0] == f.get()[0] + g.get()[0] - 3.0
+    assert (f_1 - 3.0).get()[1] == f.get()[1] + g.get()[1]
 
 def test_multiplication():
     """test multiplication (f*g) for both value and derivative"""
