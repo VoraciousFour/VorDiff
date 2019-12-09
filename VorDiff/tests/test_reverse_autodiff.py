@@ -6,8 +6,8 @@ Created on Mon Dec  9 18:48:23 2019
 @author: weiruchen
 """
 
-from VorDiff.nodes.reverse_operator import ReverseOperator as rop
-from VorDiff.nodes.reverse_autodiff import ReverseAutoDiff as rad
+from VorDiff.reverse_operator import ReverseOperator as rop
+from VorDiff.reverse_autodiff import ReverseAutoDiff as rad
 
 
 def create_reverse_vector(array):
