@@ -41,8 +41,12 @@ class ReverseAutoDiff():
             reverse_vecs[i]._init_children()
         return reverse_vecs
 
-    def partial(f, x):
+    def partial_vector(f, x):
         
         f._gradient = 1
         f.compute_gradient(x)
         return x._gradient
+
+    def partial_scalar(f):
+        
+        return f.compute_gradient()
