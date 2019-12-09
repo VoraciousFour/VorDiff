@@ -6,7 +6,7 @@ class ReverseScalar():
     def __init__(self, val: float):
         
         self._val = val
-        self._gradient = None
+        self._gradient = 1
         self._children = {}
         
     def get(self):
@@ -14,11 +14,18 @@ class ReverseScalar():
         return self._val
     
     def compute_gradient(self):
-        
-        try:
-            return sum([val * node.compute_gradient() for node, val in self.children.items()])
-        except TypeError:
-            return self._gradient
+
+        if len(self._children.keys()) > 0:
+            
+            gradient = 0
+            for node, val in self._children.items():
+                gradient += val*node.compute_gradient()
+            return gradient
+            #return sum([val * node.compute_gradient() for node, val in self._children.items()])
+            #except TypeError:
+            #    return self._gradient
+        else:
+            return 1
     
     def __add__(self, other):
 
@@ -56,11 +63,11 @@ class ReverseScalar():
         return child
     
     def __mul__(self, other):
-        
+        print(self._val)
         try: # If scalar
             child = ReverseScalar(self._val*other._val)
             self._children[child] = other._val
-            other._children[child] = other._val
+            other._children[child] = self._val
             return child
         
         except AttributeError: # If constant
@@ -109,7 +116,7 @@ class ReverseScalar():
             return child
         
         except AttributeError: # If constant
-            child = ReverseScalar(self._val/other)
+            child = ReverseScalar(self._val**other)
             self._children[child] = other*self._val**(other-1)
             return child
         

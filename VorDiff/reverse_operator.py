@@ -126,10 +126,3 @@ class ReverseOperator:
             return np.tanh(x)
         
         
-        
-        
-        
-        
-        
-        
-        

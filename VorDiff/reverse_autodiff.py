@@ -21,3 +21,9 @@ class ReverseAutoDiff():
         '''
         
         return ReverseScalar(val)
+    
+    def partial_der(self, f, x):
+        
+        
+        
+        return x.compute_gradient()
