@@ -21,3 +21,28 @@ class ReverseAutoDiff():
         '''
         
         return ReverseScalar(val)
+    
+    @staticmethod
+    def reverse_vector(vals):
+        '''
+        Creates a ReverseVector object with the values given
+        
+        INPUTS
+        =======
+        vals: The list of numeric values at which to evaluate
+        
+        RETURNS
+        =======
+        ReverseVector objects
+        '''
+        reverse_vecs = [None] * len(vals)
+        for i in range(len(vals)):
+            reverse_vecs[i] = ReverseVector(vals[i])
+            reverse_vecs[i]._init_children()
+        return reverse_vecs
+
+    def partial(f, x):
+        
+        f._gradient = 1
+        f.compute_gradient(x)
+        return x._gradient
