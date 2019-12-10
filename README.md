@@ -10,4 +10,4 @@
 - Zergham Ahmed
 
 
-For more information about our package, please read our [documentation](https://github.com/VoraciousFour/cs207-FinalProject/blob/master/docs/VorDiff_doc.ipynb)
+For more information about our package, please read our [documentation](https://github.com/VoraciousFour/cs207-FinalProject/blob/master/docs/documentation.ipynb)
