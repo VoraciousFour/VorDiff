@@ -63,11 +63,11 @@ class Operator():
         
         try:
             return Element(np.cos(x._val), -np.sin(x._val)*x._jacob)
-        except AttributeError: # If contant
+        except AttributeError: # If constant
             try: # If scalar variable
                 return Scalar(np.cos(x._val), -np.sin(x._val)*x._der)
             
-            except AttributeError: # If contant
+            except AttributeError: # If constant
                 return np.cos(x)
         
     @staticmethod
